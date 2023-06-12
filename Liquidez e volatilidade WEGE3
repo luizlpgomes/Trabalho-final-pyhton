@@ -1,0 +1,32 @@
+LIQUIDEZ:
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+# Obter dados históricos da WEGE3
+ticker = yf.Ticker('WEGE3.SA')
+history = ticker.history(start='2020-01-01')
+
+# Criar o gráfico de liquidez
+plt.plot(history.index, history['Volume'], color='blue')
+plt.title('Liquidez da WEGE3')
+plt.xlabel('Data')
+plt.ylabel('Volume')
+plt.show()
+
+VOLATILIDADE:
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+# Obter dados históricos da WEGE3
+ticker = yf.Ticker('WEGE3.SA')
+history = ticker.history(start='2020-01-01')
+
+# Calcular a variação percentual diária
+history['Variation'] = history['Close'].pct_change() * 100
+
+# Criar o gráfico de volatilidade
+plt.plot(history.index, history['Variation'], color='red')
+plt.title('Volatilidade da WEGE3')
+plt.xlabel('Data')
+plt.ylabel('Variação Percentual')
+plt.show()
