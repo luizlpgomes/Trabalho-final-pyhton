@@ -1,0 +1,54 @@
+VOLATILIDADE:
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+# Símbolo da ação que deseja analisar
+symbol = 'ITUB4.SA'
+
+# Obter os dados históricos
+data = yf.download(symbol, start='2020-01-01')
+
+# Calcular a volatilidade
+data['Volatility'] = data['Close'].pct_change().rolling(window=20).std()
+
+# Plotar a volatilidade em vermelho
+plt.figure(figsize=(10, 6))
+plt.plot(data.index, data['Volatility'], color='red', label='Volatilidade')
+
+# Configurar o gráfico
+plt.title(f'Volatilidade da Ação {symbol}')
+plt.xlabel('Data')
+plt.ylabel('Volatilidade')
+plt.legend()
+
+# Exibir o gráfico
+plt.show()
+
+LIQUIDEZ:
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+# Símbolo da ação que deseja analisar
+symbol = 'ITUB4.SA'
+
+# Obter os dados históricos
+data = yf.download(symbol, start='2020-01-01')
+
+# Calcular o volume médio diário
+data['VolumeMA'] = data['Volume'].rolling(window=20).mean()
+
+# Calcular o índice de liquidez
+data['LiquidityIndex'] = data['Volume'] / data['VolumeMA']
+
+# Plotar o volume médio diário
+plt.figure(figsize=(10, 6))
+plt.plot(data.index, data['VolumeMA'], label='Volume Médio Diário')
+
+# Configurar o gráfico
+plt.title(f'Liquidez da Ação {symbol}')
+plt.xlabel('Data')
+plt.ylabel('Valor')
+plt.legend()
+
+# Exibir o gráfico
+plt.show()
