@@ -1,0 +1,10 @@
+import matplotlib.pyplot as plt
+
+labels = ['ITUB4', 'BBSE3', 'TAEE3', 'PETR4', 'WEGE3', 'MRFG3', 'AMER3', 'CDB']
+valores = [15, 15, 15, 15, 10, 10, 5, 15]
+
+plt.pie(valores, labels=labels, autopct='%1.1f%%')
+plt.title('Distribuição da carteira')
+plt.axis('equal')  # Para garantir que o gráfico seja exibido como um círculo
+
+plt.show()
