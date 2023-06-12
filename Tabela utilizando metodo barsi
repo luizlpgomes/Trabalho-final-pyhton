@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Criar os dados da tabela inicial
+dados = {
+    'Ação': ['ITUB4', 'BBSE3', 'TAEE3', 'WEGE3', 'PETR4', 'MRFG3', 'AMER3'],
+    'Div. Yield': ['1,02', '1,87', '1,61', '1,58', '16,76', '2,24', '0'],
+    'Método Barsi (6%)': [6, 6, 6, 6, 6, 6, 6],
+    'Total': ['R$ 17,00', 'R$ 31,16', 'R$ 26,83', 'R$ 26,33', 'R$ 279,33', 'R$ 37,33', 'R$ 0,00'],}
+
+# Criar o DataFrame
+df = pd.DataFrame(dados)
+
+# Dados das colunas extras
+dados_extra = {
+    'Preço Ação': ['R$ 27,47', 'R$ 30,92', 'R$ 12,68', 'R$ 37,66', 'R$ 30,65', 'R$ 7,27', 'R$ 1,09'],
+    'Compra': ['não', 'sim', 'sim', 'não', 'sim', 'sim', 'não']
+}
+
+# Atualizar o DataFrame com as colunas extras
+df['Preço Ação'] = dados_extra['Preço Ação']
+df['Compra'] = dados_extra['Compra']
+
+# Configurar a tabela
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.axis('off')
+
+# Criar a tabela
+table = ax.table(cellText=df.values,
+                 colLabels=df.columns,
+                 cellLoc='center',
+                 loc='center',
+                 colColours=['lightgray'] * len(df.columns),
+                 bbox=[0, 0, 1, 1])
+
+# Configurar o estilo da tabela
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1, 2)  # Aumentar o tamanho vertical da tabela
+
+# Exibir a tabela
+plt.show()
